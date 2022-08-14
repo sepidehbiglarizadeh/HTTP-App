@@ -1,0 +1,10 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #60a5fa;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+}
