@@ -12,7 +12,7 @@ const NewComment = () => {
           <input type="email" />
         </div>
         <div>
-          <label>Name :</label>
+          <label>NewComment :</label>
           <textarea></textarea>
         </div>
         <button>Add</button>
