@@ -1,4 +1,5 @@
-import http from "../../services/httpServices";
+import addNewComment from "../../services/addNewCommentService";
+import getAllComments from "../../services/getAllcommentsService";
 import { useState } from "react";
 import styles from "./NewComment.module.css";
 
@@ -16,8 +17,8 @@ const NewComment = ({ setComemnts }) => {
   const addNewCommentHandler = async (e) => {
     e.preventDefault();
     try {
-      await http.post("/comments", comment);
-      const { data } = await http.get("/comments");
+      await addNewComment(comment);
+      const { data } = await getAllComments();
       setComemnts(data);
     } catch (error) {}
   };

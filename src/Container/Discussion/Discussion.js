@@ -3,9 +3,8 @@ import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/Full-Comment/FullComment";
 import NewComment from "../../components/New-Comment/NewComment";
 import "./Discussion.css";
-import {toast} from "react-toastify";
-import http from "../../services/httpServices";
-
+import { toast } from "react-toastify";
+import getAllComments from "../../services/getAllcommentsService";
 
 const Discussion = () => {
   const [comments, setComemnts] = useState(null);
@@ -15,7 +14,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await http.get("/comments");
+        const { data } = await getAllComments();
         setComemnts(data);
       } catch (err) {
         setError(true);
@@ -33,7 +32,7 @@ const Discussion = () => {
 
     if (error) {
       renderValue = <p>fetching dtata failed</p>;
-      toast.error("There is an error!!")
+      toast.error("There is an error!!");
     }
 
     if (comments && !error) {
@@ -53,7 +52,11 @@ const Discussion = () => {
     <main>
       <section>{renderComment()}</section>
       <section>
-        <FullComment commentId={selectedId} setComemnts={setComemnts} setSelectedId={setSelectedId}/>
+        <FullComment
+          commentId={selectedId}
+          setComemnts={setComemnts}
+          setSelectedId={setSelectedId}
+        />
       </section>
       <section>
         <NewComment setComemnts={setComemnts} />
