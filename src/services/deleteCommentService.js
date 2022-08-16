@@ -1,7 +1,7 @@
-import http from "./httpServices";
+import instance from "../axiosInstance";
 
 const deleteComment = (id) => {
-    return http.delete(`/comments/${id}`);
+    return instance.delete(`/comments/${id}`);
 }
  
 export default deleteComment;
