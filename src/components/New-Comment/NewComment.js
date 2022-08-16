@@ -1,4 +1,4 @@
-import axios from "axios";
+import http from "../../services/httpServices";
 import { useState } from "react";
 import styles from "./NewComment.module.css";
 
@@ -16,8 +16,8 @@ const NewComment = ({ setComemnts }) => {
   const addNewCommentHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/comments", comment);
-      const { data } = await axios.get("http://localhost:3001/comments");
+      await http.post("/comments", comment);
+      const { data } = await http.get("/comments");
       setComemnts(data);
     } catch (error) {}
   };

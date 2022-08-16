@@ -3,8 +3,9 @@ import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/Full-Comment/FullComment";
 import NewComment from "../../components/New-Comment/NewComment";
 import "./Discussion.css";
-import axios from "axios";
 import {toast} from "react-toastify";
+import http from "../../services/httpServices";
+
 
 const Discussion = () => {
   const [comments, setComemnts] = useState(null);
@@ -14,7 +15,7 @@ const Discussion = () => {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/comments");
+        const { data } = await http.get("/comments");
         setComemnts(data);
       } catch (err) {
         setError(true);
