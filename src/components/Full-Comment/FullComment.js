@@ -8,24 +8,32 @@ const FullComment = ({ commentId }) => {
   useEffect(() => {
     if (commentId) {
       axios
-        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+        .get(`http://localhost:3001/comments/${commentId}`)
         .then((res) => setComment(res.data))
         .catch();
     }
   }, [commentId]);
 
-  let commentDetail= <p>select a comment</p>
+  const deleteCommentHandler = () => {
+    axios
+      .delete(`http://localhost:3001/comments/${commentId}`)
+      .then((res) => console.log(res.data))
+      .catch(err=> console.log(err));
+  };
 
-  if(commentId) commentDetail= <p>loading...</p>
+  let commentDetail = <p>select a comment</p>;
 
-  if(comment) {
-    commentDetail= (
-    <div className={styles.fullComment}>
-    <p>{comment.name}</p>
-    <p>{comment.email}</p>
-    <p>{comment.body}</p>
-  </div>
-  );
+  if (commentId) commentDetail = <p>loading...</p>;
+
+  if (comment) {
+    commentDetail = (
+      <div className={styles.fullComment}>
+        <p>{comment.name}</p>
+        <p>{comment.email}</p>
+        <p>{comment.body}</p>
+        <button onClick={deleteCommentHandler}>Delete</button>
+      </div>
+    );
   }
 
   return commentDetail;

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import styles from "./NewComment.module.css";
 
-const NewComment = () => {
+const NewComment = ({setComemnts}) => {
   const [comment, setComemnt] = useState({
     name: "",
     email: "",
@@ -16,8 +16,10 @@ const NewComment = () => {
   const addNewCommentHandler = (e) => {
     e.preventDefault();
     axios
-      .post("https://jsonplaceholder.typicode.com/comments",comment)
-      .then((res) => console.log(res.data));
+      .post("http://localhost:3001/comments",comment)
+      .then((res) => axios.get("http://localhost:3001/comments"))
+      .then((res)=> setComemnts(res.data))
+      .catch();
   };
 
   return (
