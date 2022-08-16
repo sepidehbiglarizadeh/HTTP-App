@@ -52,7 +52,7 @@ const Discussion = () => {
     <main>
       <section>{renderComment()}</section>
       <section>
-        <FullComment commentId={selectedId} />
+        <FullComment commentId={selectedId} setComemnts={setComemnts} setSelectedId={setSelectedId}/>
       </section>
       <section>
         <NewComment setComemnts={setComemnts} />
