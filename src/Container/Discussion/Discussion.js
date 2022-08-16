@@ -4,6 +4,7 @@ import FullComment from "../../components/Full-Comment/FullComment";
 import NewComment from "../../components/New-Comment/NewComment";
 import "./Discussion.css";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const Discussion = () => {
   const [comments, setComemnts] = useState(null);
@@ -29,7 +30,10 @@ const Discussion = () => {
   const renderComment = () => {
     let renderValue = <p>Loading...</p>;
 
-    if (error) renderValue = <p>fetching dtata failed</p>;
+    if (error) {
+      renderValue = <p>fetching dtata failed</p>;
+      toast.error("There is an error!!")
+    }
 
     if (comments && !error) {
       renderValue = comments.map((c) => (
