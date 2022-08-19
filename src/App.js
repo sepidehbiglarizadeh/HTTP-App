@@ -1,14 +1,21 @@
 import "./App.css";
-import Discussion from "./Container/Discussion/Discussion";
 import { ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Route, Switch } from "react-router-dom";
+import routes from "./routes";
+import Layout from "./Layout/Layout";
 
 const App = () => {
   return (
-    <div className="container">
+    <Layout>
       <ToastContainer/>
-      <Discussion/>
-    </div>
+      <Switch>
+        {routes.map((route) => {
+          return <Route key={Date.now()} {...route} />;
+        })}
+      </Switch>
+    </Layout>
+    
   );
 };
 

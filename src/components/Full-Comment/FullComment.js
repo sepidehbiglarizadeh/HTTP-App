@@ -4,8 +4,9 @@ import getAllComments from "../../services/getAllcommentsService";
 import { useEffect, useState } from "react";
 import styles from "./FullComment.module.css";
 
-const FullComment = ({ commentId, setComemnts, setSelectedId }) => {
+const FullComment = ({  setComemnts, setSelectedId ,match}) => {
   const [comment, setComment] = useState(null);
+  const commentId= match.params.id;
 
   useEffect(() => {
     if (commentId) {
