@@ -1,8 +1,8 @@
-import Discussion from "../../Container/Discussion/Discussion";
+import CommentsList from "../Comments/Comments"
 
 const HomePage = () => {
     return ( 
-        <Discussion/>
+        <CommentsList/>
      );
 }
  

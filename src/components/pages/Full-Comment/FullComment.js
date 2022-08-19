@@ -1,12 +1,11 @@
-import getOneComment from "../../services/getOneCommentService";
-import deleteComment from "../../services/deleteCommentService";
-import getAllComments from "../../services/getAllcommentsService";
+import getOneComment from "../../../services/getOneCommentService";
+import deleteComment from "../../../services/deleteCommentService";
 import { useEffect, useState } from "react";
 import styles from "./FullComment.module.css";
 
-const FullComment = ({  setComemnts, setSelectedId ,match}) => {
+const FullComment = ({ match, history }) => {
   const [comment, setComment] = useState(null);
-  const commentId= match.params.id;
+  const commentId = match.params.id;
 
   useEffect(() => {
     if (commentId) {
@@ -19,10 +18,8 @@ const FullComment = ({  setComemnts, setSelectedId ,match}) => {
   const deleteCommentHandler = async () => {
     try {
       await deleteComment(commentId);
-      const { data } = await getAllComments();
-      setComemnts(data);
+      history.push("/");
       setComment(null);
-      setSelectedId(null);
     } catch (error) {}
   };
 

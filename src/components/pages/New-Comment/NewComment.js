@@ -1,9 +1,8 @@
-import addNewComment from "../../services/addNewCommentService";
-import getAllComments from "../../services/getAllcommentsService";
+import addNewComment from "../../../services/addNewCommentService";
 import { useState } from "react";
-import styles from "./NewComment.module.css";
+import styles from "./NewComment.module.css"
 
-const NewComment = ({ setComemnts }) => {
+const NewComment = ({ history }) => {
   const [comment, setComemnt] = useState({
     name: "",
     email: "",
@@ -18,13 +17,12 @@ const NewComment = ({ setComemnts }) => {
     e.preventDefault();
     try {
       await addNewComment(comment);
-      const { data } = await getAllComments();
-      setComemnts(data);
+      history.push("/");
     } catch (error) {}
   };
 
   return (
-    <form className={styles.newComment} onSubmit={addNewCommentHandler}>
+    <form  className={styles.newComment} onSubmit={addNewCommentHandler}>
       <div>
         <label>Name :</label>
         <input type="text" name="name" onChange={changeHandler} />
